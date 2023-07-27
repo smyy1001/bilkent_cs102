@@ -1,0 +1,52 @@
+20
+tedh 5
+nwod 6
+pkmn 4
+dqpi 9
+nnwe 1
+gxrp 9
+tter 3
+nwwo 6
+ftwh 8
+cmpt 10
+recr 6
+glmb 7
+twrm 4
+mgsm 11
+kkda 7
+zldt 12
+ltro 4
+knkl 5
+fsps 6
+ghre 8
+cmpt-recr
+cmpt-glmb
+glmb-twrm
+twrm-recr
+mgsm-cmpt
+mgsm-recr
+kkda-mgsm
+fsps-glmb
+fsps-tedh
+fsps-kkda
+nwod-knkl
+nwod-ltro
+zldt-pkmn
+zldt-tter
+zldt-kkda
+ltro-nnwe
+nnwe-cmpt
+ghre-dqpi
+ghre-tedh
+ghre-glmb
+nwwo-recr
+recr-tter
+tter-gxrp
+ftwh-dqpi
+ftwh-nwwo
+knkl-nwwo
+knkl-fsps
+tedh-kkda
+cmpt-nwod
+nnwe-nwod
+twrm-kkda
