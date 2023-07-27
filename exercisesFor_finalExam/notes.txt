@@ -1,0 +1,240 @@
+----------------------------------------------------------------------------------------------------------------------------------------------
+•Sorting Methods: 
+        -Selection Sort
+            •Finding min/max and moving it to the correct position
+            •The number of visits is of the order n2
+            •Big-Oh notation = O(n^2) / means: grows no faster than the function in brackets
+        -Insertion Sort
+            •accepting the first as a start and keep going through the array
+            •Inserting all others either to the right or left of the first number
+            •Big-Oh notation = worst case: O(n^2) / best case: O(n)
+        -Merge Sort
+            •Forming groups of two and sorting them, then merging the fist two group, third and fourth... 
+            •when merging first check the first element
+            •Then compare the first of one with the next in the other group and so on
+            •Big-Oh notation = the recursive depth is always O(log(n)), the amount of work done in each step is O(n).
+            •So the complexity is O(n log(n))
+            •the extra amount of memory used is O(n)
+        -Quick Sort
+            •choose a pivot and create 2 sub-arrays (<=pivot & pivot<)
+            •then choose a pivot for one of the sub-arrays in itself and keep going... (recursive!!!)
+            •Best case!!! = depth of recursion tree is O(log2(n)), Number of accesses in partition is O(n). So => O(n log2(n))
+            •Worst case!!! = depth of recursion tree is O(n), Number of accesses in partition is O(n). So => O(n^2)
+            •to avoid worst case: choose a good pivot! (median should be the pivot for the best case)
+        -Bubble Sort
+            •comparing adjacent elements (pairs of 2) and changing their places if necessary. 
+            •keep going until no iteration is necessary anymore
+            •worst case: O(n^2)
+    ►Libraries which do sorting:
+        -Arrays: Arrays.sort(arr); -> uses QuickSort
+        -Collections: Collections.sort(arrList); -> uses MergeSort
+
+•Searching Methods:
+        -Linear Search (sequential search)
+            •examining all elements until you reach the end of the list (one by one)
+            •worst case: O(n)
+            •best case: O(1)
+        -Binary Search
+            •Determine whether the value occurs in the first or second half (sorted list!)
+            •Then repeat the search in one of the halves
+            •O(log(n))
+    ►Libraries which do searching:
+        -Arrays & Collections: .binarySearch(arr,find) -> returns the position
+            OR -(k+1) where k is the position before which the element should be inserted 
+
+
+!!! In order to use these already present methods the object which the program is supposed to sort or searching
+must implement the Comparable interface which has one method (a.compareTo(b) -> negative if a should come before b, positive if after)
+
+!!! The Big-Oh notation is used to describe the growth rate of a function!!!
+
+!!! Time!
+► Linear Time: one loop and each have one visit and action done is 1. total running time: O(n)
+► Quadratic Time:  Still visit each element once, but work per visit is much larger
+    Each counting: O(n) Work done in each step: n 
+    total running time: O(n^2)
+    •Algorithm has three phases:
+        1. Compute all counts --> O(n^2)
+        2. Compute the maximum --> O(n)
+        3. Find the maximum in the counts --> O(n)
+    •for big-oh notation we take the greatest: O(n^2)
+► Logarithmic Time: An algorithm that cuts the size of work in half in each step.
+    total running time: O(log(n))
+    example: binary search, merge sort 
+-------------------------------------------------------------------------------------------------------------------------------------------
+THE JAVA COLLECTIONS FRAMEWORK (<<interface>>) ------------------------> well known as DATA STRUCTURES (not the whole thing, thank god)
+
+!!! If a method can operate on arbitrary collections, use the Collection interface type for the parameter !!!
+    •public static void removeLongWords(Collection<String> words)
+ 
+1.Set(<<interface>>) -extends collections-
+    (implement Set)
+    1.1.HashSet = there is no sorting at all. even the order in which you added the elements is not important.
+                  there are no duplications! 
+                  .forEach(System.out::println);
+                  THIS GUY IS REALLY REALLY FAST (because it uses hashTables!!!)
+    1.2.TreeSet = the adding order isn't important, the elements are in the ascendent order! (small -> great)
+                  there are no duplications!
+                  .forEach(System.out::println);
+2.List(<<interface>>) -extends collections-
+    (implement List)
+    2.1.ArrayList = actually these are arrays. get() works immediately but other than that add() for instance is not efficient!
+                    complexity on adding and removing O(n) because when you remove an element (worst case) u may move all elements on place                   
+3.Queue(<<interface>>) -extends collections-
+    (implement both List & Queue)
+    2.2 & 3.1.LinkedList = uses nodes which store the element + ref. to the previous element (and next element if it is doubly list node)
+                           last node has an element and a null link
+                           A node’s successor is the next node
+                           A node’s predecessor is the previous node
+                           in the beginning java has only ref. to the starting and ending point.
+                           LinkedList is MUCH MORE efficient when we add or remove something!!!
+
+
+↓USING STACKS AND QUEUES↓
+•Stack: Stack<Obj> stack = new Stack<>();
+        The adding order matters / space complexity is O(1) meaning: no other space needed
+        Remembers the order of its elements, but no inserting in every position
+        You can only add and remove elements at the top!
+        duplication is possible
+        .add() method is available (both)
+        .remove() method is available (both)
+        .peek() --> gives the last (top) value
+        .pop() --> gives the last (top)  and REMOVES IT! / O(1)
+        .push(obj) --> adds to the end (top) / worst case: O(n)
+        .search(obj) --> returns the index if it is there and -1 if it isn't there
+goes up...
+.
+.
+| |
+| |
+|_| 
+•Queue: Queue<Obj> queue = new LinkedList<>(); (!!!!!!!!!!) ----------------> FIFO
+        Adding order matters!
+        Remembers the order of its elements, but no inserting in every position
+        Add items to only one end (the tail)!
+        Remove from the other end (the head)!
+        Exp: A line of people waiting for a bank teller
+        duplication is possible
+        .add() method is available (just .add(obj) no wanted position adding) ---> USE .offer(Obj) method works the same (adds to the end)
+        .remove(): remove's the very first element, .remove(Obj): removes the given obj, .remove(index): NOT POSSIBLE 
+        .poll() --> use this instead of remove(). removes the very first element
+        .peek() --> shows the very first element
+ _
+| | -> very first element
+| |
+| | 
+.
+.
+goes down...
+
+
+↓USING MAPS↓
+1.HashMap = Map<Obj, Obj> map = new HashMap<>(); / .add() --> .put()! / .get(key) = corresponding value / there are no duplications! 
+2.TreeMap = Map<Obj, Obj> map = new TreeMap<>(); / .add() --> .put()! / .get(key) = corresponding value / there are no duplications!
+    / add, remove, containsKey: time complexity = O(log(n))
+!!! the only difference is that hash is random ordered where tree is ascendent ordered !!!
+.putIfAbsent(key,value): only adds if it isn't currently on the map
+.remove(key): removes the whole specific key-value pair
+
+
+►USING linkedList ITERATORS 
+    Iterator<Obj> myIterator = myList.iterator(); / myList can be any collection class member
+    Allows user to visit teh elements in the container one by one. Moves only forward! 
+    It is available for all the Collection classes.
+    •boolean hasNext() --> true if there is an element after the current element or not
+    •next() --> pushes the iterator one step further and actually returns the element it crossed over
+    •boolean hasPrevious() --> true if there is an element before the current element or not
+    •previous() --> pushes the iterator one step back and actually returns the element it crossed over
+    •remove() --> this method removes the element the iterator crossed the latest
+
+------------------------------------------------------------------------------------------------------------------------------------------
+BASIC DATA STRUCTURES
+    ►HashTable = kinda like hashMap BUT; •slower!!! •doesn't allow null key (hashMap allows 1) •synchronized and thats why slower!
+        adding removing --> O(1)+ / Searching --> O(1) / Iterating through all element --> O(n)
+    ►LinkedHashMap = the insertion order matters here!
+    ►TreeHashMap = always sorted according to the Keys!
+
+    ►Singly-Linked List (SLL) = a linked list with nodes which we create and has only references to the next node
+        last node has a null link
+        check the details in the slide set14 -----------------> important stuff there but can't explain
+        Adding-removing first element --> O(1)
+        Access an element and remove last element --> O(n)
+    ►Doubly-Linked List (DLL) = a linked list with nodes which hold 2 references and 1 element
+        the header has two links: the second element and the last.
+        kinda like there are 2 links going through each other →←
+        Adding-removing first and last element --> O(1)
+        Access an element --> O(n)
+    
+    ►Circular Linked List (CLL) = no node can have null!
+        in this case the last node points to the first node  
+
+!!! In binary Trees search = O(log2(N))
+
+!!! check the Advanced Iterator in slide set14 
+
+!!! Lists and Queues are Linear Data Structures but Maps and Trees are nonlinear
+------------------------------------------------------------------------------------------------------------------------------------------
+GENERIC TYPES
+    Specifying the type of the object which will be operated in the program.
+    Classes:when using with classes: public myClass <T> {}
+            // you can write an actual type or name it T and use it for all type
+            public myClass <T extends Animal & Bugs> // T now, can be all classes which extends the Animal or Bugs class
+            // All animal or Bugs class methods are available in this new class!
+            // Instead of Animal or Bugs --> any class which is being extended OR INTERFACE(still use extends!!!) (always first the classes)
+
+            when using with methods: public static <T (or T,V...)> void someMethod(T something1, V something2) {}
+
+            ?: wild card --> now that Integer extends Object but ArrayList<Integer> DOES NOT extend ArrayList<Object> you should use a wild card
+            a wild card is like saying "hi java, I don't know what will be in it but ı know it is a ArrayList" --> ArrayList<?>
+            u can use the extends etc. like u can with the T or V notations (or whatever u like it to be)
+------------------------------------------------------------------------------------------------------------------------------------------
+EXCEPTION HANDLING - THROWING EXCEPTIONS
+
+1.Checked Exceptions = all exceptions other than 'Runtime Exceptions' are checked exceptions
+                        these exceptions MUST be deled with before compile time otherwise the program won't run
+
+2.Unchecked Exceptions = exceptions which are under the umbrella of 'Runtime Exceptions' 
+                        this type of exceptions are NOT checked in compile and are not holding the program from being run
+
+
+!!! Custom Exceptions: create a class, extend an Exception (max 'Exception' not any higher!)
+
+
+►Case1 --> Throwing an Exception
+    if(someCondition) {
+        // a new exception object will be constructed, then thrown
+        throw new IllegalArgumentException("you can't use this argument here!"); //most can be constructed with an error message
+    }
+    someCodeComesHere; // this line is NOT visited if the exception is thrown 
+
+►Case2 --> Catching Exceptions
+    try{
+        // the actual code u want to try running goes here
+        // note that the lines after the exception causing line won't be even reached
+    } catch(SomeException1 | SomeException2 e) {
+        // this block of code runs ONLY if any of the specified exceptions are thrown by the "try" block
+        // using Exception e --> catching all exceptions (all exceptions are under the umbrella of 'Exception')
+        // one step further would be 'Throwable' in the hierarchy BUT don't use this.
+        // BECAUSE this would catch errors along the way with exceptions
+    } finally { ------------------> this block is OPTIONAL!
+        // use this block ONLY if you have a piece of code u need to be executed IN ANY case
+        // any exception being thrown or not, does not matter at all
+        // this block of code WILL always be executed
+        // the finally block CAN'T reach stuff in the try or catch blocks!!!
+    }
+
+►Case3 --> 'throws' Clause
+    public void someMethodException() throws Exception1, Exception2 {}
+    // You MUST declare all checked exceptions here one by one
+    // You MAY declare the unchecked exceptions here too but it is optional  
+
+►Case4 --> finally Clause
+    try{
+        // the actual code u want to try running goes here
+        // note that the lines after the exception causing line won't be even reached
+    } finally {
+        // any exception being thrown or not, does not matter at all
+        // this block of code WILL always be executed
+        // the finally block CAN'T reach stuff in the try or catch blocks!!!
+    }
+------------------------------------------------------------------------------------------------------------------------------------------
