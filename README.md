@@ -1,2 +1,2 @@
-# bilkent_cs102
-Bilkent CS102 Fall 2022
+*Author: Sumeyye ACAR*
+# Bilkent CS102 Fall 2022
